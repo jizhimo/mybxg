@@ -21,20 +21,20 @@ define(["jquery","template","cookie"],function($,template){
 	});
 	//检测用户是否已登录
 	var flag=$.cookie("PHPSESSID");
-	console.log(flag)
+	//console.log(flag)
 	if(!flag &&location.pathname!="/main/login"){
 		location.href="/main/login"
 	}
 	//设置用户头像信息
 	var loginInfo=$.cookie("loginInfo");
-	console.log(loginInfo)
+	//console.log(loginInfo)
 	loginInfo=loginInfo&&JSON.parse(loginInfo);
 	//$(".aside .profile img").attr("src",loginInfo.tc_avatar);
 	//$(".aside .profile h4").html(loginInfo.tc_name);
 	var tpl='<div class="avatar img-circle"> <img src="{{tc_avatar}}"> </div> '
 		+'<h4>{{tc_name}}</h4>'
-	console.log(tpl)
+
 	var html=template.render(tpl,loginInfo);
-	console.log(html)
+
 	$(".aside .profile").html(html);
 })
