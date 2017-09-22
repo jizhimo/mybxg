@@ -1,8 +1,8 @@
 /**
- * Created by 任洁玉 on 2017/9/21.
+ * Created by 锟轿斤拷锟斤拷 on 2017/9/21.
  */
 define(["jquery","template"],function($,template){
-//调用接口。获取数据
+//鏁欏笀鍒楄〃鍔熻兘
     $.ajax({
         type:"get",
         url:"/api/teacher",
@@ -10,7 +10,35 @@ define(["jquery","template"],function($,template){
         success:function(data){
                 console.log(data)
             var html=template("template",{list:data.result});
-            $("#teacherInfo").html(html)
+            $("#teacherInfo").html(html);
+            //鍚敤娉ㄩ攢鏁欏笀鍔熻兘
+            $(".eod").click(function(){
+                var that=this;
+                var td=$(this).parent();
+                //var td=$(this).closest("td");鏌ユ壘鏈�杩戠埗鍏冪礌
+                var tcID=td.attr("data-tcId");
+                var tcStatus=td.attr("data-status");
+                //console.log(tcID,tcStatus)
+                $.ajax({
+                    type:"post",
+                    url:"/api/teacher/handle",
+                    data:{tc_id:tcID,tc_status:tcStatus},
+                    dataType:"json",
+                    success:function(data){
+                        //console.log(data)
+                        if(data.code==200){
+                            td.attr("data-status", data.result.tc_status);
+                            if(data.result.tc_status==0){
+                                $(that).text("娉ㄩ攢")
+                            }else{
+                                $(that).text("鍚敤")
+                            }
+
+                        }
+                    }
+                });
+            });
         }
-    })
+    });
+
 })

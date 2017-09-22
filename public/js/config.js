@@ -11,6 +11,7 @@ require.config(
             common:"../js/common",
             login:"../js/login",
             teacherlist:"../js/teacher-list",
+            teacherAdd:"../js/teacher-add",
         }
     }
 )
