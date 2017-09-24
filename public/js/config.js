@@ -1,5 +1,5 @@
 /**
- * Created by ÈÎ½àÓñ on 2017/9/20.
+ * Created by ï¿½Î½ï¿½ï¿½ï¿½ on 2017/9/20.
  */
 require.config(
     {
@@ -12,6 +12,14 @@ require.config(
             login:"../js/login",
             teacherlist:"../js/teacher-list",
             teacherAdd:"../js/teacher-add",
+            bootstrap:"bootstrap/js/bootstrap.min",
+            util:"../js/util"
+
+        },
+        shim:{
+            bootstrap:{
+                deps:["jquery"]
+            }
         }
     }
 )

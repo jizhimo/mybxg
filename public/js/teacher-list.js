@@ -1,14 +1,14 @@
 /**
  * Created by �ν��� on 2017/9/21.
  */
-define(["jquery","template"],function($,template){
+define(["jquery","template","bootstrap"],function($,template){
 //教师列表功能
     $.ajax({
         type:"get",
         url:"/api/teacher",
         dataType:"json",
         success:function(data){
-                console.log(data)
+                //console.log(data)
             var html=template("template",{list:data.result});
             $("#teacherInfo").html(html);
             //启用注销教师功能
@@ -35,6 +35,25 @@ define(["jquery","template"],function($,template){
                             }
 
                         }
+                    }
+                });
+            });
+            //讲师查看功能
+            $(".preview").click(function(){
+                var td=$(this).parent();
+                var tcID=td.attr("data-tcId");
+                var tcStatus=td.attr("data-status");
+                $.ajax({
+                    type:"get",
+                    url:"/api/teacher/view",
+                    data:{tc_id:tcID},
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data)
+                        var html=template("tcTpl",data.result);
+                        console.log(html)
+                        $("#tcInfo").html(html);
+                        $("#teacherModal").modal();
                     }
                 });
             });
