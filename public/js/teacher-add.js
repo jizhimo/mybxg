@@ -1,7 +1,7 @@
 /**
  * Created by �ν��� on 2017/9/22.
  */
-define(["jquery","template","util"],function($,template,util){
+define(["jquery","template","util","datepicker","language"],function($,template,util){
     var tcId=util.qs("tc_id");
    // console.log(tcId)
     if(tcId){
@@ -46,9 +46,9 @@ define(["jquery","template","util"],function($,template,util){
                     }
                 }
 
-            })
+            });
 
-        })
+        });
     }
 
 
