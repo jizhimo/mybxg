@@ -17,15 +17,38 @@ define(["jquery","template","util"],function($,template,util){
                 data.result.operate="编辑讲师";
                 var html=template("teacherTpl",data.result);
                 console.log(html)
-                $("#teacherInfo").html(html)
+                $("#teacherInfo").html(html);
+                //处理表单提交
+                submitForm("/api/teacher/update")
             }
         });
     }
     else{
         //添加讲师
         var html=template("teacherTpl",{operate:"添加讲师"});
-        console.log(html)
-        $("#teacherInfo").html(html)
+        //console.log(html)
+        $("#teacherInfo").html(html);
+        //处理表单提交
+        submitForm("/api/teacher/add")
+    }
+    //实现表单提交
+    function submitForm(url){
+        $("#teacherBtn").click(function(){
+            $.ajax({
+                type:"post",
+                url:url,
+                data:$("#teacherForm").serialize(),
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
+                    if(data.code==200){
+                        location.href="list"
+                    }
+                }
+
+            })
+
+        })
     }
 
 
