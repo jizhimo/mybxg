@@ -14,6 +14,8 @@ require.config(
             teacherAdd:"../js/teacher-add",
             bootstrap:"bootstrap/js/bootstrap.min",
             util:"../js/util",
+            validate:"validate/jquery-validate.min",
+            form:"jquery-form/jquery.form",
             datepicker:"bootstrap-datepicker/js/bootstrap-datepicker.min",
             language:"bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min"
 
@@ -25,6 +27,9 @@ require.config(
             },
             language:{
                 deps:["jquery","datepicker"]
+            },
+            validate:{
+                deps:["jquery"]
             }
         }
     }
